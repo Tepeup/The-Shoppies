@@ -51,9 +51,7 @@ export default function MovieSearch() {
   return (
     <div className="movie-dashboard">
       {/* Condition Render of Banner and Scroll buttons*/}
-      {banner && (
-        <div className="banner">Maximum of five movies nominated! </div>
-      )}
+      {banner && <div className="banner">Maximum of Five Movies Nominated</div>}
       <div className={`scroll ${list ? "showScroll" : ""}`}>
         <button
           className={`scrollLeft ${list ? "show" : "hide"}`}
@@ -66,6 +64,7 @@ export default function MovieSearch() {
           {list ? (
             list.map((res) => (
               <div
+                key={res.imdbID}
                 className={`movie-card ${
                   !nominees.includes(res.Title) ? "nominate" : "nominated"
                 }`}
@@ -121,7 +120,7 @@ export default function MovieSearch() {
       </div>
 
       <div className="search-bar">
-        <form class="form">
+        <form className="form">
           <input
             type="text"
             placeholder="Search.."
@@ -135,7 +134,7 @@ export default function MovieSearch() {
 
       <div className="nominee-list">
         {nominees.map((res) => (
-          <div className="nominee-card">
+          <div className="nominee-card" key={res}>
             <div className="nominee-title">{res}</div>
             <div className="nominee-button">
               <div
