@@ -1,0 +1,361 @@
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans,
+    Helvetica Neue, sans-serif;
+  overflow-x: hidden;
+  background: rgb(0, 0, 0);
+  background: radial-gradient(circle, rgba(0, 0, 0, 1) 0%, rgba(50, 9, 200, 1) 0%, rgb(71, 0, 88) 100%);
+  display: grid;
+  align-content: center;
+  min-height: 100vh;
+}
+footer {
+  background-color: black;
+  margin-top: 2em;
+  width: 100vw;
+  text-align: center;
+  padding: 12px;
+  color: white;
+
+  @media screen and (min-width: 1300px) {
+    position: fixed;
+    bottom: 0;
+  }
+  @media screen and (max-width: 420px) {
+    position: fixed;
+    bottom: 0;
+  }
+}
+
+* {
+  box-sizing: border-box;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.dot {
+  opacity: 0;
+}
+
+.banner {
+  z-index: 100;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  padding: 12px;
+  background-color: black;
+  color: white;
+  text-align: center;
+}
+
+.welcome {
+  display: grid;
+  justify-self: center;
+  width: 100%;
+  text-align: center;
+  font-size: 2em;
+  color: white;
+  opacity: 0.5;
+}
+
+.movie-dashboard {
+  width: 100vw;
+  height: auto;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+}
+
+.search-results,
+.movie-desc {
+  box-sizing: border-box;
+}
+.search-results::-webkit-scrollbar,
+.movie-desc::-webkit-scrollbar {
+  display: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 300px;
+}
+
+.search-results {
+  display: flex;
+  max-width: 85vw;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  height: 440px;
+  align-items: center;
+  scroll-behavior: smooth;
+  position: relative;
+}
+.scrollLeft {
+  height: 400px;
+  background-color: rgba(0, 0, 0, 0.2);
+  border: none;
+  color: rgba(255, 255, 255, 0.35);
+  z-index: 2;
+  top: 20px;
+  margin: auto;
+  padding: 1em;
+  cursor: pointer;
+
+  &:active {
+    color: black;
+  }
+}
+.scrollRight {
+  height: 400px;
+  background-color: rgba(0, 0, 0, 0.2);
+  border: none;
+  color: rgba(255, 255, 255, 0.35);
+  z-index: 2;
+  top: 20px;
+  margin: auto;
+  padding: 1em;
+  cursor: pointer;
+  &:active {
+    color: black;
+  }
+}
+
+.hide {
+  display: none;
+}
+.arrow-button {
+  width: 20px;
+}
+.scroll {
+  width: fit-content;
+  height: fit-content;
+  margin: 3em auto 2em auto;
+  display: grid;
+  grid-template-columns: 1fr;
+}
+.showScroll {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+}
+.enabled {
+  background-color: black;
+  border: none;
+  color: white;
+  padding: 0.5em 1em;
+}
+.disabled {
+  background-color: black;
+  border: none;
+  color: white;
+  padding: 0.5em;
+}
+
+.movie-card {
+  margin: 1em;
+  background-color: #000000;
+  height: fit-content;
+  position: relative;
+  max-width: 200px;
+
+  &:hover {
+    transform: scale(1.1);
+    transition: transform 1s;
+
+    .movie-buttons {
+      display: block;
+      z-index: 2;
+      opacity: 0.85;
+    }
+  }
+}
+.movie-poster {
+  width: 200px;
+  height: 300px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  -webkit-mask-image: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    color-stop(0.85, rgb(255, 254, 254)),
+    color-stop(1, rgba(80, 0, 0, 0))
+  );
+}
+.movie-info {
+  background-color: #000000;
+  color: white;
+  height: 100px;
+  display: grid;
+  padding: 1em;
+}
+
+.movie-title {
+  font-size: 16px;
+  overflow: hidden;
+}
+.movie-buttons {
+  position: absolute;
+  left: 0%;
+  top: 0%;
+  display: none;
+  cursor: pointer;
+
+  button {
+    width: 200px;
+    height: 400px;
+    font-size: 24px;
+    cursor: pointer;
+  }
+}
+
+.nominated {
+  opacity: 0.5;
+  transform: scale(0.9);
+  .movie-buttons {
+    display: block;
+    opacity: 0.85;
+  }
+}
+
+.search-bar {
+  display: grid;
+  justify-content: center;
+}
+
+.nominee-list {
+  display: grid;
+  grid-template-rows: repeat(auto, 1fr);
+  width: 500px;
+  max-width: 90vw;
+  justify-self: center;
+  margin-bottom: 5em;
+  margin-top: 3em;
+}
+.nominee-card {
+  display: flex;
+  justify-content: space-between;
+  background-color: rgba(0, 0, 0, 0.3);
+  margin: 0.5em;
+  padding: 0.5em 1em;
+}
+.nominee-title {
+  margin-right: 1em;
+  color: white;
+  display: grid;
+  align-self: center;
+}
+
+form {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 1s;
+  width: 50px;
+  height: 50px;
+  background: white;
+  box-sizing: border-box;
+  border-radius: 25px;
+  border: 4px solid white;
+  padding: 5px;
+}
+
+input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 42.5px;
+  line-height: 30px;
+  outline: 0;
+  border: 0;
+  display: none;
+  font-size: 1em;
+  border-radius: 20px;
+  padding: 0 20px;
+}
+
+.fa {
+  box-sizing: border-box;
+  padding: 10px;
+  width: 42.5px;
+  height: 42.5px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-radius: 50%;
+  color: #07051a;
+  text-align: center;
+  font-size: 1.2em;
+  transition: all 1s;
+}
+
+form:hover {
+  width: 250px;
+  cursor: pointer;
+}
+
+form:hover input {
+  display: block;
+}
+
+form:hover .fa {
+  background: #07051a;
+  color: white;
+}
+
+.thrash {
+  width: 12px;
+}
+.delete-button {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 0.5s;
+  width: 30px;
+  height: 30px;
+  background: white;
+  box-sizing: border-box;
+  border-radius: 25px;
+  border: 4px solid white;
+  padding: 5px;
+  display: grid;
+  align-content: center;
+  justify-content: center;
+
+  .remove {
+    display: none;
+  }
+
+  &:hover {
+    width: 100px;
+    cursor: pointer;
+    svg {
+      display: none;
+    }
+    .remove {
+      display: block;
+      font-weight: 500;
+      color: transparent;
+      animation: colorchange 0.5s forwards;
+      animation-delay: 0.1s;
+    }
+
+    @keyframes colorchange {
+      from {
+        color: transparent;
+      }
+      to {
+        color: black;
+      }
+    }
+  }
+}
