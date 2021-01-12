@@ -6,6 +6,7 @@ import {
   faChevronRight,
   faChevronLeft,
 } from "@fortawesome/free-solid-svg-icons";
+import MovieCard from "./MovieCard";
 
 export default function MovieSearch() {
   // Setting up Hooks
@@ -25,18 +26,19 @@ export default function MovieSearch() {
     setList(movieList.data.Search);
   };
   // Remove Nominee Function
-  function handleRemoveNominee(e) {
+  function handleRemoveNominee(movieObject) {
     const listCopy = [...nominees];
-    const removedNomineeList = listCopy.filter((item) => item !== e);
+    const removedNomineeList = listCopy.filter((item) => item !== movieObject);
     setNominees(removedNomineeList);
     setBanner(false);
   }
   // Nominate Movie Function
-  function handleNomination(e) {
+  function handleNomination(movieObject) {
     if (nominees.length < 5) {
       const newNomineesList = [...nominees];
-      newNomineesList.push(e);
+      newNomineesList.push(movieObject);
       setNominees(newNomineesList);
+
       if (newNomineesList.length === 5) {
         setBanner(true);
       }
@@ -63,48 +65,12 @@ export default function MovieSearch() {
         <div className="search-results" id="search-box">
           {list ? (
             list.map((res) => (
-              <div
-                key={res.imdbID}
-                className={`movie-card ${
-                  !nominees.includes(res.Title) ? "nominate" : "nominated"
-                }`}
-              >
-                <div
-                  className="movie-poster"
-                  style={{
-                    color: "white",
-                    backgroundImage: `url(${
-                      res.Poster == "N/A" ? "/BlankPoster.jpg" : res.Poster
-                    })`,
-                  }}
-                ></div>
-                <div className="movie-info">
-                  <div className="movie-title">
-                    <div className="movie-year">
-                      {res.Title} ({res.Year})
-                    </div>
-                  </div>
-                </div>
-                <div className="movie-buttons">
-                  {!nominees.includes(res.Title) ? (
-                    <button
-                      className="enabled"
-                      onClick={() => {
-                        handleNomination(res.Title);
-                      }}
-                    >
-                      NOMINATE
-                    </button>
-                  ) : (
-                    <button
-                      className="disabled"
-                      onClick={() => handleRemoveNominee(res.Title)}
-                    >
-                      NOMINATED
-                    </button>
-                  )}
-                </div>
-              </div>
+              <MovieCard
+                movieInfo={res}
+                handleNomination={handleNomination}
+                handleRemoveNominee={handleRemoveNominee}
+                nominees={nominees}
+              />
             ))
           ) : (
             <div className="welcome">Search for Movies to Nominate</div>
@@ -134,8 +100,10 @@ export default function MovieSearch() {
 
       <div className="nominee-list">
         {nominees.map((res) => (
-          <div className="nominee-card" key={res}>
-            <div className="nominee-title">{res}</div>
+          <div className="nominee-card" key={res.imdbID}>
+            <div className="nominee-title">
+              {res.Title} ({res.Year})
+            </div>
             <div className="nominee-button">
               <div
                 className="delete-button"
