@@ -19,7 +19,7 @@ export default function MovieSearch() {
     setSearch(e.target.value);
 
     const movieList = await axios.get(
-      `http://www.omdbapi.com/?s=${e.target.value}&apikey=2438c384&type=movie`
+      `https://www.omdbapi.com/?s=${e.target.value}&apikey=2438c384&type=movie`
     );
 
     setList(movieList.data.Search);
