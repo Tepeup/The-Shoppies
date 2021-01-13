@@ -16,7 +16,7 @@ export default function Home() {
           name="viewport"
           content="width=device-width, initial-scale=1.0"
         ></meta>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/shopify_glyph.ico" />
         <link
           rel="stylesheet"
           href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
