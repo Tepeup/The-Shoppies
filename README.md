@@ -1,10 +1,10 @@
-## Shopify Web Dev Challenge
+# Shopify Web Dev Challenge
 
-# The Shoppies
+## The Shoppies
 Movie awards for entrepreneurs
 App to help manage Shopify movie nominations for the upcoming Shoppies.
 
-# Criteria:
+## Criteria:
 Search results should come from OMDB's API (free API key: http://www.omdbapi.com/apikey.aspx).
 Each search result should list at least its title, year of release and a button to nominate that film.
 Updates to the search terms should update the result list
